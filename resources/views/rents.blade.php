@@ -55,16 +55,16 @@
                         <tr>
                           <td>
                             <div class="cart__img">
-                              <img src="{{ asset($rent->image_url) }}" alt="">
+                              <img src="{{ asset($rent->car->image_url) }}" alt="">
                             </div>
                           </td>
-                          <td><a href="{{ route('car.show', ['id' => $rent->car_id]) }}">{{ $rent->brand.' '.$rent->model }}</a></td>
+                          <td><a href="{{ route('car.show', ['id' => $rent->car->id]) }}">{{ $rent->car->brand.' '.$rent->car->model }}</a></td>
                           <td>{{ $rent->start_date}}</td>
                           <td>{{ $rent->end_date}}</td>
                           <td>{{ $rent->payement_status}}</td>
                           <td>{{ $rent->payement_method}}</td>
                           <td>{{ intval($rent->total_cost) }} Euros</td>
-                          <td><a href="{{ route('rent.destroy', ['id' => $rent->rent_id]) }}">Return</a></td>
+                          <td><a href="{{ route('rent.destroy', ['id' => $rent->id]) }}">Return</a></td>
                           <td></td>
                         </tr>
                         @endforeach

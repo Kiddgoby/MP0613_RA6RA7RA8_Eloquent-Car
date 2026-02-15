@@ -14,7 +14,7 @@
                 <div class="card bg-light text-white mb-4">
                     <div class="card-body text-dark">Number of cars</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <p class="text-dark fs-4" href="#">Unavailable</p>
+                        <p class="text-dark fs-4" href="#">{{ $carsCount }}</p>
                         <div class="small"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
                 <div class="card bg-light text-white mb-4">
                     <div class="card-body text-dark">Number of users</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <p class="text-dark fs-4" href="#">Unavailable</p>
+                        <p class="text-dark fs-4" href="#">{{ $usersCount }}</p>
                         <div class="small"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                 <div class="card bg-light text-white mb-4">
                     <div class="card-body text-dark">Number of ongoing rentals</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <p class="text-dark fs-4" href="#">Unavailable</p>
+                        <p class="text-dark fs-4" href="#">{{ $ongoingRentalsCount }}</p>
                         <div class="small"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>

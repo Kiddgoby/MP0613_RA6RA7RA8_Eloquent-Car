@@ -18,9 +18,8 @@ class CarController extends Controller
     {
         $cars_latest = Car::latest();
 
-        // TODO: Needs modification
         if (Auth::guard('admin')->check()) {
-            $cars = $cars_latest->paginate(20);
+            $cars = $cars_latest->orderBy('daily_rate')->paginate(20);
             return view('admin.cars', compact('cars'));
         }
 
@@ -46,11 +45,11 @@ class CarController extends Controller
 
         if ($request->has('make_tmp')) {
             $makeTmp = $request->input('make_tmp');
-            if ($makeTmp == 'nouveau') {
-                $carsQuery->where('make_year', '>=', date('Y') - 2);
-            } elseif ($makeTmp == 'ancien') {
-                $carsQuery->where('make_year', '<', date('Y') - 2);
-            } 
+            if ($makeTmp == 'new') {
+                $carsQuery->where('make_year', '>=', date('Y') - 1);
+            } elseif ($makeTmp == 'old') {
+                $carsQuery->where('make_year', '<', date('Y') - 1);
+            }
         }
 
         // Filter by brand
@@ -66,7 +65,7 @@ class CarController extends Controller
             $carsQuery->orderByDesc('created_at');
         }
 
-        // Limit number of results //FIXME results
+        // Limit number of results 
         $limit = $request->has('limit') ? $request->input('limit') : 9;
 
         $cars = $carsQuery->paginate($limit);
@@ -161,21 +160,21 @@ class CarController extends Controller
      */
     public function destroy(string $id)
     {
-        // Récupérer la voiture à supprimer
+        // Get the car to delete
         $car = Car::findOrFail($id);
 
-        // Supprimer l'image principale de la voiture
+        // Delete the main car image
         Storage::disk('public')->delete($car->image_url);
 
-        // Supprimer les images secondaires de la voiture
+        // Delete the secondary car images
         foreach ($car->secondaryImages as $image) {
             Storage::disk('public')->delete($image->url);
             $image->delete();
         }
 
-        // Supprimer la voiture de la base de données
+        // Delete the car from the database
         $car->delete();
 
-        return redirect()->route('admin.car.index')->with('success', 'La voiture a été supprimée avec succès.');
+        return redirect()->route('admin.car.index')->with('success', 'The car has been deleted successfully.');
     }
 }

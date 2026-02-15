@@ -66,7 +66,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
             Route::get('/logout', 'AdminAuthController@logout')->name('admin.logout.perform');
 
             // Admin home
-            Route::view('/', 'admin.index')->name('admin.home');
+            Route::get('/', 'AdminController@index')->name('admin.home');
 
             //Admin cars 
             Route::get('/cars', 'CarController@index')->name('admin.car.index');

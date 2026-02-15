@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Rent;
 use Carbon\Carbon;
 use App\Models\Car;
-use Illuminate\Support\Facades\DB;
 
 class RentController extends Controller
 {
@@ -18,13 +17,11 @@ class RentController extends Controller
     public function index()
     {
         if (Auth::guard('admin')->check()) {
-            $rents = Rent::paginate(15);
+            $rents = Rent::with('car')->paginate(15);
             return view('admin.rents', compact('rents'));
         } else {
-            $rents = DB::table('rents')
-                ->join('cars', 'rents.car_id', '=', 'cars.id')
-                ->where('rents.user_id', Auth::user()->id)
-                ->select('rents.id as rent_id', 'rents.*', 'cars.id as car_id', 'cars.*')
+            $rents = Rent::with('car')
+                ->where('user_id', Auth::user()->id)
                 ->get();
             return view('rents')->with(compact('rents'));
         }
@@ -111,9 +108,6 @@ class RentController extends Controller
             $rent->delete();
             return redirect()->route('admin.rent.index')->with('success', 'The rental has been deleted successfully.');
         } else {
-            //fixme delete as well
-            $rent = Rent::findOrFail($id);
-            $rent->delete();
             return redirect()->route('rent.index');
         }
     }

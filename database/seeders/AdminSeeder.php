@@ -17,35 +17,35 @@ class AdminSeeder extends Seeder
             'username' => 'admin1',
             'fullname' => 'Admin One',
             'email' => 'admin1@example.com',
-            'password' => Hash::make('admin123'),
+            'password' => 'admin123',
         ]);
 
         Admin::create([
             'username' => 'admin2',
             'fullname' => 'Admin Two',
             'email' => 'admin2@example.com',
-            'password' => Hash::make('admin123'),
+            'password' => 'admin123',
         ]);
 
         Admin::create([
             'username' => 'admin3',
             'fullname' => 'Admin Three',
             'email' => 'admin3@example.com',
-            'password' => Hash::make('admin123'),
+            'password' => 'admin123',
         ]);
 
         Admin::create([
             'username' => 'manager1',
             'fullname' => 'Manager One',
             'email' => 'manager1@example.com',
-            'password' => Hash::make('admin123'),
+            'password' => 'admin123',
         ]);
 
         Admin::create([
             'username' => 'manager2',
             'fullname' => 'Manager Two',
             'email' => 'manager2@example.com',
-            'password' => Hash::make('admin123'),
+            'password' => 'admin123',
         ]);
     }
 }
