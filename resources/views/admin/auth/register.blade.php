@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('title', 'Inscription')
+@section('title', 'Register')
 
 @section('body')
 <!-- main content -->

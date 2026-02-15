@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Historique')
+@section('title', 'History')
 
 @section('main')
 
@@ -9,8 +9,8 @@
     <!-- breadcrumb -->
     <div class="col-12">
       <ul class="breadcrumb">
-        <li class="breadcrumb__item"><a href="{{ route('home.index') }}">Accueil</a></li>
-        <li class="breadcrumb__item breadcrumb__item--active">Historique</li>
+        <li class="breadcrumb__item"><a href="{{ route('home.index') }}">Home</a></li>
+        <li class="breadcrumb__item breadcrumb__item--active">History</li>
       </ul>
     </div>
     <!-- end breadcrumb -->
@@ -18,7 +18,7 @@
     <!-- title -->
     <div class="col-12">
       <div class="main__title main__title--page">
-        <h1>Historique</h1>
+        <h1>History</h1>
       </div>
     </div>
     <!-- end title -->
@@ -38,12 +38,12 @@
                     <table class="cart__table">
                       <thead>
                         <tr>
-                          <th>Voitures</th>
+                          <th>Cars</th>
                           <th></th>
-                          <th>Date de debut</th>
-                          <th>Date de fin</th>
-                          <th>Statut du payement</th>
-                          <th>Méthode de payement</th>
+                          <th>Start date</th>
+                          <th>End date</th>
+                          <th>Payment status</th>
+                          <th>Payment method</th>
                           <th>Total</th>
                           <th></th>
                           <th></th>
@@ -55,16 +55,16 @@
                         <tr>
                           <td>
                             <div class="cart__img">
-                              <img src="{{ Storage::url($rent->image_url) }}" alt="">
+                              <img src="{{ asset($rent->image_url) }}" alt="">
                             </div>
                           </td>
-                          <td><a href="{{ route('car.show', ['id' => $rent->id]) }}">{{ $rent->brand.' '.$rent->model }}</a></td>
+                          <td><a href="{{ route('car.show', ['id' => $rent->car_id]) }}">{{ $rent->brand.' '.$rent->model }}</a></td>
                           <td>{{ $rent->start_date}}</td>
                           <td>{{ $rent->end_date}}</td>
                           <td>{{ $rent->payement_status}}</td>
                           <td>{{ $rent->payement_method}}</td>
-                          <td>{{ intval($rent->total_cost) }} FCFA</td>
-                          <td><a href="{{ route('rent.destroy', ['id' => $rent->id]) }}">Rendre</a></td>
+                          <td>{{ intval($rent->total_cost) }} Euros</td>
+                          <td><a href="{{ route('rent.destroy', ['id' => $rent->rent_id]) }}">Return</a></td>
                           <td></td>
                         </tr>
                         @endforeach

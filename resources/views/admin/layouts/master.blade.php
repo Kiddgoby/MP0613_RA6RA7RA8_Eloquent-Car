@@ -31,7 +31,7 @@
                         <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         -->
-                    <li><a class="text-light btn btn-dark" href="{{ route('admin.logout.perform') }}">Déconnexion</a></li>
+                    <li><a class="text-light btn btn-dark" href="{{ route('admin.logout.perform') }}">Logout</a></li>
              
         </ul>
 
@@ -50,15 +50,15 @@
                         <div class="sb-sidenav-menu-heading">Données</div>
                         <a class="nav-link" href="{{ route('admin.user.index') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                            Utilisateurs
+                            Users
                         </a>
                         <a class="nav-link" href="{{ route('admin.car.index') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Voitures
+                            Cars
                         </a>
                         <a class="nav-link" href="{{ route('admin.rent.index') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Locations
+                            Rentals
                         </a>
                     </div>
                 </div>

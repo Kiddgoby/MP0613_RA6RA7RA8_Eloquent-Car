@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Accueil')
+@section('title', 'Home')
 
 @section('main')
 
@@ -12,27 +12,27 @@
     <div class="row">
       <div class="col-12">
         <div class="home__content">
-          <h1 class="home__title">La location, <br>encore plus facile</h1>
-          <p class="home__text">Le meilleur endroit pour louer une voiture facilement !</p>
+          <h1 class="home__title">Car rental, <br>made easier</h1>
+          <p class="home__text">The best place to rent a car easily!</p>
 
           <form class="home__search" action="{{ route('car.index') }}" method="get">
             <div class="home__group">
-              <label for="marque">Marque</label>
-              <input type="text" name="brand" id="marque" placeholder="Quelle marque cherchez vous?" required>
+              <label for="marque">Brand</label>
+              <input type="text" name="brand" id="marque" placeholder="What brand are you looking for?" required>
             </div>
             
             <div class="home__group">
               <label for="model">Model</label>
-              <input type="text" name="model" id="model" placeholder="Quel model desirez vous ?" required>
+              <input type="text" name="model" id="model" placeholder="What model do you want?" required>
             </div>
 
             <div class="home__group">
-              <label for="max_daily_rate">Prix journalier max</label>
-              <input type="text" name="max_daily_rate" id="max_daily_rate" placeholder="Prix en FCFA" required>
+              <label for="max_daily_rate">Max daily price</label>
+              <input type="text" name="max_daily_rate" id="max_daily_rate" placeholder="Price in Euros" required>
             </div>
 
 
-            <button type="submit"><span>Chercher</span></button>
+            <button type="submit"><span>Search</span></button>
           </form>
         </div>
       </div>
@@ -47,16 +47,16 @@
     <!-- title -->
     <div class="col-12">
       <div class="main__title main__title--first">
-        <h2>Nos voitures</h2>
+        <h2>Our cars</h2>
 
-        <a href="{{ route('car.index') }}" class="main__link">Voir plus<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <a href="{{ route('car.index') }}" class="main__link">View more<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M17.92,11.62a1,1,0,0,0-.21-.33l-5-5a1,1,0,0,0-1.42,1.42L14.59,11H7a1,1,0,0,0,0,2h7.59l-3.3,3.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l5-5a1,1,0,0,0,.21-.33A1,1,0,0,0,17.92,11.62Z" />
           </svg></a>
       </div>
     </div>
     <!-- end title -->
     @if (count($cars) == 0)
-      <h2 style="color: gray; margin: auto">Vide</h2>
+      <h2 style="color: gray; margin: auto">Empty</h2>
     @endif
 
     @foreach ($cars as $car)
@@ -76,11 +76,11 @@
           <div class="splide__track">
             <ul class="splide__list">
               <li class="splide__slide">
-                <img src="{{ Storage::url($car->image_url) }}" alt="">
+                <img src="{{ asset($car->image_url) }}" alt="">
               </li>
               @foreach ($car->secondaryImages as $image)
               <li class="splide__slide">
-                <img src="{{ Storage::url($car->image_url) }}" alt="">
+                <img src="{{ asset($image->url) }}" alt="">
               </li>
               @endforeach
             </ul>
@@ -95,7 +95,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="M12.3,12.22A4.92,4.92,0,0,0,14,8.5a5,5,0,0,0-10,0,4.92,4.92,0,0,0,1.7,3.72A8,8,0,0,0,1,19.5a1,1,0,0,0,2,0,6,6,0,0,1,12,0,1,1,0,0,0,2,0A8,8,0,0,0,12.3,12.22ZM9,11.5a3,3,0,1,1,3-3A3,3,0,0,1,9,11.5Zm9.74.32A5,5,0,0,0,15,3.5a1,1,0,0,0,0,2,3,3,0,0,1,3,3,3,3,0,0,1-1.5,2.59,1,1,0,0,0-.5.84,1,1,0,0,0,.45.86l.39.26.13.07a7,7,0,0,1,4,6.38,1,1,0,0,0,2,0A9,9,0,0,0,18.74,11.82Z" />
             </svg>
-            <span>{{ $car->passenger_capacity }} personnes</span>
+            <span>{{ $car->passenger_capacity }} people</span>
           </li>
           <li>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -117,7 +117,7 @@
           </li>
         </ul>
         <div class="car__footer">
-          <span class="car__price">{{ intval($car->daily_rate) }} FCFA <sub>/ jour</sub></span>
+          <span class="car__price">{{ intval($car->daily_rate) }} Euros <sub>/ day</sub></span>
           
           <a href="{{ route('car.show', ['id' => $car->id]) }}" class="car__more"><span>Details</span></a>
         </div>
@@ -133,7 +133,7 @@
     <!-- title -->
     <div class="col-12">
       <div class="main__title">
-        <h2>Commencez en 4 étapes simples</h2>
+        <h2>Get started in 4 simple steps</h2>
       </div>
     </div>
     <!-- end title -->
@@ -145,12 +145,12 @@
             <path d="M21,10.5H20v-1a1,1,0,0,0-2,0v1H17a1,1,0,0,0,0,2h1v1a1,1,0,0,0,2,0v-1h1a1,1,0,0,0,0-2Zm-7.7,1.72A4.92,4.92,0,0,0,15,8.5a5,5,0,0,0-10,0,4.92,4.92,0,0,0,1.7,3.72A8,8,0,0,0,2,19.5a1,1,0,0,0,2,0,6,6,0,0,1,12,0,1,1,0,0,0,2,0A8,8,0,0,0,13.3,12.22ZM10,11.5a3,3,0,1,1,3-3A3,3,0,0,1,10,11.5Z" />
           </svg>
         </span>
-        <h3 class="step1__title">Créez un profil</h3>
+        <h3 class="step1__title">Create a profile</h3>
         @auth
-          <p class="step1__text">Vous avez un compte ? Parfait, visitez notre parking<br><a href="{{ route('car.index') }}">Voitures</a></p>
+          <p class="step1__text">Do you have an account? Perfect, visit our parking<br><a href="{{ route('car.index') }}">Cars</a></p>
         @endauth
         @guest
-          <p class="step1__text">Pour faire une location, vous devez créer un compte<br><a href="{{ route('register.show') }}">Commencer</a></p>
+          <p class="step1__text">To make a rental, you must create an account<br><a href="{{ route('register.show') }}">Get started</a></p>
         @endguest
       </div>
     </div>
@@ -162,8 +162,8 @@
             <path d="M6.62,13.08a.9.9,0,0,0-.54.54,1,1,0,0,0,1.3,1.3,1.15,1.15,0,0,0,.33-.21,1.15,1.15,0,0,0,.21-.33A.84.84,0,0,0,8,14a1.05,1.05,0,0,0-.29-.71A1,1,0,0,0,6.62,13.08Zm13.14-4L18.4,5.05a3,3,0,0,0-2.84-2H8.44A3,3,0,0,0,5.6,5.05L4.24,9.11A3,3,0,0,0,2,12v4a3,3,0,0,0,2,2.82V20a1,1,0,0,0,2,0V19H18v1a1,1,0,0,0,2,0V18.82A3,3,0,0,0,22,16V12A3,3,0,0,0,19.76,9.11ZM7.49,5.68A1,1,0,0,1,8.44,5h7.12a1,1,0,0,1,1,.68L17.61,9H6.39ZM20,16a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12a1,1,0,0,1,1-1H19a1,1,0,0,1,1,1Zm-3.38-2.92a.9.9,0,0,0-.54.54,1,1,0,0,0,1.3,1.3.9.9,0,0,0,.54-.54A.84.84,0,0,0,18,14a1.05,1.05,0,0,0-.29-.71A1,1,0,0,0,16.62,13.08ZM13,13H11a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z" />
           </svg>
         </span>
-        <h3 class="step1__title">Dîtes nous quelle voiture vous désirez</h3>
-        <p class="step1__text">Nous avons une gamme assez complète de véhicule à mettre à votre disposition</p>
+        <h3 class="step1__title">Tell us what car you want</h3>
+        <p class="step1__text">We have a fairly complete range of vehicles at your disposal</p>
       </div>
     </div>
 
@@ -174,8 +174,8 @@
             <path d="M20.71,16.71l-2.42-2.42a1,1,0,0,0-1.42,0l-3.58,3.58a1,1,0,0,0-.29.71V21a1,1,0,0,0,1,1h2.42a1,1,0,0,0,.71-.29l3.58-3.58A1,1,0,0,0,20.71,16.71ZM16,20H15V19l2.58-2.58,1,1Zm-6,0H6a1,1,0,0,1-1-1V5A1,1,0,0,1,6,4h5V7a3,3,0,0,0,3,3h3v1a1,1,0,0,0,2,0V9s0,0,0-.06a1.31,1.31,0,0,0-.06-.27l0-.09a1.07,1.07,0,0,0-.19-.28h0l-6-6h0a1.07,1.07,0,0,0-.28-.19.32.32,0,0,0-.09,0L12.06,2H6A3,3,0,0,0,3,5V19a3,3,0,0,0,3,3h4a1,1,0,0,0,0-2ZM13,5.41,15.59,8H14a1,1,0,0,1-1-1ZM8,14h6a1,1,0,0,0,0-2H8a1,1,0,0,0,0,2Zm0-4H9A1,1,0,0,0,9,8H8a1,1,0,0,0,0,2Zm2,6H8a1,1,0,0,0,0,2h2a1,1,0,0,0,0-2Z" />
           </svg>
         </span>
-        <h3 class="step1__title">Validez un contrat</h3>
-        <p class="step1__text">Confirmez vos contrat de location et venez récuper votre véhicule</p>
+        <h3 class="step1__title">Validate a contract</h3>
+        <p class="step1__text">Confirm your rental contract and come pick up your vehicle</p>
       </div>
     </div>
   </section>

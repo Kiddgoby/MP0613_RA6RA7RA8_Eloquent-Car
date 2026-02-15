@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Voitures')
+@section('title', 'Cars')
 
 @section('main')
 
@@ -10,7 +10,7 @@
         <div class="col-12">
             <ul class="breadcrumb">
                 <li class="breadcrumb__item"><a href="{{ route('home.index') }}">Home</a></li>
-                <li class="breadcrumb__item breadcrumb__item--active">Voitures</li>
+                <li class="breadcrumb__item breadcrumb__item--active">Cars</li>
             </ul>
         </div>
         <!-- end breadcrumb -->
@@ -18,7 +18,7 @@
         <!-- title -->
         <div class="col-12">
             <div class="main__title main__title--page">
-                <h1>Choisez la meilleur voiture</h1>
+                <h1>Choose the best car</h1>
             </div>
         </div>
         <!-- end title -->
@@ -27,20 +27,20 @@
         <div class="col-12">
             <div class="main__filter">
                 <form action="{{ route('car.index') }}" action="get" class="main__filter-search">
-                    <input type="text" name="model" placeholder="Chercher...">
-                    <button type="submit" aria-label="Chercher"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <input type="text" name="model" placeholder="Search...">
+                    <button type="submit" aria-label="Search"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z" />
                         </svg></button>
                 </form>
                 <div class="main__filter-wrap">
                     <select class="main__select" name="make_tmp">
-                        <option value="tout">Tout</option>
-                        <option value="nouveau">Nouveau</option>
-                        <option value="ancien">Ancien</option>
+                        <option value="tout">All</option>
+                        <option value="nouveau">New</option>
+                        <option value="ancien">Old</option>
                     </select>
 
                     <select class="main__select" name="brand">
-                        <option value="tout">Toute marque</option>
+                        <option value="tout">All brands</option>
                         <option value="Audi">Audi</option>
                         <option value="BMW">BMW</option>
                         <option value="Cadillac">Cadillac</option>
@@ -85,11 +85,11 @@
                     <div class="splide__track">
                         <ul class="splide__list">
                             <li class="splide__slide">
-                                <img src="{{ Storage::url($car->image_url) }}" alt="">
+                                <img src="{{ asset($car->image_url) }}" alt="">
                             </li>
                             @foreach ($car->secondaryImages as $image)
                             <li class="splide__slide">
-                                <img src="{{ Storage::url($car->image_url) }}" alt="">
+                                <img src="{{ asset($image->url) }}" alt="">
                             </li>
                             @endforeach
                         </ul>
@@ -104,7 +104,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M12.3,12.22A4.92,4.92,0,0,0,14,8.5a5,5,0,0,0-10,0,4.92,4.92,0,0,0,1.7,3.72A8,8,0,0,0,1,19.5a1,1,0,0,0,2,0,6,6,0,0,1,12,0,1,1,0,0,0,2,0A8,8,0,0,0,12.3,12.22ZM9,11.5a3,3,0,1,1,3-3A3,3,0,0,1,9,11.5Zm9.74.32A5,5,0,0,0,15,3.5a1,1,0,0,0,0,2,3,3,0,0,1,3,3,3,3,0,0,1-1.5,2.59,1,1,0,0,0-.5.84,1,1,0,0,0,.45.86l.39.26.13.07a7,7,0,0,1,4,6.38,1,1,0,0,0,2,0A9,9,0,0,0,18.74,11.82Z" />
                         </svg>
-                        <span>{{ $car->passenger_capacity }} personnes</span>
+                        <span>{{ $car->passenger_capacity }} people</span>
                     </li>
                     <li>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -126,7 +126,7 @@
                     </li>
                 </ul>
                 <div class="car__footer">
-                    <span class="car__price">{{ intval($car->daily_rate) }} FCFA <sub>/ jour</sub></span>
+                    <span class="car__price">{{ intval($car->daily_rate) }} Euros <sub>/ day</sub></span>
 
                     <a href="{{ route('car.show', ['id' => $car->id]) }}" class="car__more"><span>Details</span></a>
                 </div>

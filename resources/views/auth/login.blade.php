@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('title', 'Connexion')
+@section('title', 'Login')
 
 @section('body')
 <!-- main content -->
@@ -22,16 +22,16 @@
                 </div>
 
                 @if (isset ($errors) && count($errors) > 0 && !$errors->has('email'))
-                    <span class="text-danger text-center">{{ "Mot de passe invalide" }}</span>
+                    <span class="text-danger text-center">{{ "Invalid password" }}</span>
                 @endif
                 <div class="sign__group">
-                    <input type="password" name="password" class="sign__input" placeholder="Mot de passe">
+                    <input type="password" name="password" class="sign__input" placeholder="Password">
                 </div>
 
 
-                <button class="sign__btn" type="submit"><span>Se connecter</span></button>
+                <button class="sign__btn" type="submit"><span>Sign in</span></button>
 
-                <span class="sign__text">Vous n'avez pas encore de compte ? <a href="{{ route('register.show') }}">Inscrivez vous!</a></span>
+                <span class="sign__text">Don't have an account yet? <a href="{{ route('register.show') }}">Sign up!</a></span>
             </form>
         </div>
     </div>

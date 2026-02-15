@@ -14,7 +14,6 @@ class AuthController extends Controller
      /**
      * Display resgistration page.
      * 
-     * @return \Illuminate\Http\Response
      */
     public function show_register()
     {
@@ -24,7 +23,6 @@ class AuthController extends Controller
      /**
      * Display login page.
      * 
-     * @return \Illuminate\Http\Response
      */
     public function show_login()
     {
@@ -36,7 +34,6 @@ class AuthController extends Controller
      * 
      * @param RegisterRequest $request
      * 
-     * @return \Illuminate\Http\Response
      */
     public function register(RegisterRequest $req) 
     {
@@ -52,14 +49,13 @@ class AuthController extends Controller
      * 
      * @param LoginRequest $request
      * 
-     * @return \Illuminate\Http\Response
      */
     public function login(LoginRequest $request)
     {
         $credentials = $request->only('email', 'password');
 
         if(!Auth::validate($credentials)):
-            return redirect()->to('connexion')
+            return redirect()->to('login')
                 ->withErrors(trans('auth.failed'));
         endif;
 
@@ -79,7 +75,7 @@ class AuthController extends Controller
     {
         Auth::logout();
         $request->session()->flush();
-        return redirect('connexion');
+        return redirect('login');
     }
 
     /**

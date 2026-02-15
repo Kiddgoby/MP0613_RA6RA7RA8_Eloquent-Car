@@ -24,7 +24,7 @@ class RentController extends Controller
             $rents = DB::table('rents')
                 ->join('cars', 'rents.car_id', '=', 'cars.id')
                 ->where('rents.user_id', Auth::user()->id)
-                ->select('rents.*', 'cars.*')
+                ->select('rents.id as rent_id', 'rents.*', 'cars.id as car_id', 'cars.*')
                 ->get();
             return view('rents')->with(compact('rents'));
         }
@@ -50,11 +50,10 @@ class RentController extends Controller
         $rent->start_date = $validatedData['start_date'];
         $rent->end_date = $validatedData['end_date'];
         $rent->payement_method = $validatedData['payement_method'];
-        $rent->payement_method = $validatedData['payement_method'];
         $nbDay = Carbon::parse($rent->end_date)
             ->diffInDays(Carbon::parse($rent->start_date));
         $rent->total_cost = $nbDay * $car->daily_rate;
-        $rent->payement_status = "en attente";
+        $rent->payement_status = "pending";
         $rent->car_id = $id;
         $rent->user_id = Auth::user()->id;
         if ($rent->save()) {
@@ -62,7 +61,7 @@ class RentController extends Controller
             $car->save();
         }
 
-        return redirect()->back()->with('success', "Vous venez de louez la voiture pour à " . $rent->total_cost . " FCFA pour " . $nbDay . " jours");
+        return redirect()->back()->with('success', "You have successfully rented the car for " . $rent->total_cost . " Euros for " . $nbDay . " days");
     }
 
     /**
@@ -106,12 +105,15 @@ class RentController extends Controller
      */
     public function destroy(string $id)
     {
-        
+
         if (Auth::guard('admin')->check()) {
             $rent = Rent::findOrFail($id);
             $rent->delete();
-            return redirect()->route('admin.rent.index')->with('success', 'La location a été supprimée avec succès.');
+            return redirect()->route('admin.rent.index')->with('success', 'The rental has been deleted successfully.');
         } else {
+            //fixme delete as well
+            $rent = Rent::findOrFail($id);
+            $rent->delete();
             return redirect()->route('rent.index');
         }
     }

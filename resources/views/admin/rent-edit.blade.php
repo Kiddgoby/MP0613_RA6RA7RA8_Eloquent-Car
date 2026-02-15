@@ -5,24 +5,24 @@
 @section('main')
 <main>
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Modifier une location</h1>
+        <h1 class="mt-4">Modify a rental</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Accueil</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('admin.rent.index') }}">Locations</a></li>
-            <li class="breadcrumb-item active">Modifier {{ $rent->id }}</li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.rent.index') }}">Rentals</a></li>
+            <li class="breadcrumb-item active">Edit Rental #{{ $rent->id }}</li>
         </ol>
         <!-- <div class="card mb-4">
             <div class="card-body">
-                Ici vous pouvez voir toute les voitures de notre parking.
+                Here you can see all the cars in our parking.
             </div>
         </div>-->
         <div class="mb-4">
             <div class="card">
                 <div class="card-header">
-                    <h4>Location n{{ $rent->id }}</h4>
+                    <h4>Rental #{{ $rent->id }}</h4>
                 </div>
                 <div class="card-body">
-                    En developpement...    
+                    Under development...    
                 </div>
             </div>
 

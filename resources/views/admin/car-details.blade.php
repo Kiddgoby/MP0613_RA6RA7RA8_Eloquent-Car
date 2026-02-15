@@ -13,7 +13,7 @@
         </ol>
         <!-- <div class="card mb-4">
             <div class="card-body">
-                Ici vous pouvez voir toute les voitures de notre parking.
+                Here you can see all the cars in our parking lot.
             </div>
         </div>-->
         <div class="mb-4">
@@ -24,7 +24,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <img src="{{ Storage::url($car->image_url) }}" class="img-fluid" alt="Image principale de la voiture">
+                            <img src="{{ asset($car->image_url) }}" class="img-fluid" alt="Image principale de la voiture">
                         </div>
                         <div class="col-md-6">
                             <ul class="list-group">
@@ -45,7 +45,7 @@
                     <div class="row">
                         @foreach($car->secondaryImages as $image)
                         <div class="col-md-4 mt-3">
-                            <img src="{{ Storage::url($image->url) }}" class="img-fluid" alt="Image secondaire de la voiture">
+                            <img src="{{ asset($image->url) }}" class="img-fluid" alt="Image secondaire de la voiture">
                         </div>
                         @endforeach
                     </div>

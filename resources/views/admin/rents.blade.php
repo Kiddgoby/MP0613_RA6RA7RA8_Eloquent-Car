@@ -1,18 +1,18 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Locations')
+@section('title', 'Rentals')
 
 @section('main')
 <main>
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Liste des locations</h1>
+        <h1 class="mt-4">Rental list</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Accueil</a></li>
-            <li class="breadcrumb-item active">Locations</li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
+            <li class="breadcrumb-item active">Rentals</li>
         </ol>
         <!-- <div class="card mb-4">
             <div class="card-body">
-                Ici vous pouvez voir toute les voitures de notre parking.
+                Here you can see all the cars in our parking.
             </div>
         </div>-->
         @if (session('success'))
@@ -20,18 +20,18 @@
         @endif
         <div class="mb-4">
             <div>
-                <a class="btn btn-primary m-3 disabled" href="{{ route('admin.rent.index') }}" role="button">Ajouter</a>
+                <a class="btn btn-primary m-3 disabled" href="{{ route('admin.rent.index') }}" role="button">Add</a>
             </div>
             <div table-responsive">
                 <table class="table table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Debut</th>
-                            <th>Fin</th>
-                            <th>Coût total</th>
-                            <th>Statut du payement</th>
-                            <th>Méthode de payement</th>
+                            <th>Start</th>
+                            <th>End</th>
+                            <th>Total cost</th>
+                            <th>Payment status</th>
+                            <th>Payment method</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,7 +40,7 @@
                             <td>{{ $rent->id }}</td>
                             <td>{{ $rent->start_date}}</td>
                             <td>{{ $rent->end_date }}</td>
-                            <td>{{ $rent->total_cost }} FCFA</td>
+                            <td>{{ $rent->total_cost }} Euros</td>
                             <td>{{ $rent->payement_status }}</td>
                             <td>{{ $rent->payement_method }}</td>
                             <td>
@@ -49,9 +49,9 @@
                                         Options
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{{ route('admin.rent.show', ['id' => $rent->id]) }}">Voir</a></li>
-                                        <li><a class="dropdown-item disabled" href="{{ route('admin.rent.edit', ['id' => $rent->id]) }}">Modifier</a></li>
-                                        <li><button type="button" class="dropdown-item" onclick="if(confirm('Êtes-vous sûr de vouloir supprimer cette location?')) { document.getElementById('delete-form').submit(); }">Supprimer</button>
+                                        <li><a class="dropdown-item" href="{{ route('admin.rent.show', ['id' => $rent->id]) }}">View</a></li>
+                                        <li><a class="dropdown-item disabled" href="{{ route('admin.rent.edit', ['id' => $rent->id]) }}">Edit</a></li>
+                                        <li><button type="button" class="dropdown-item" onclick="if(confirm('Are you sure you want to delete this rental?')) { document.getElementById('delete-form').submit(); }">Delete</button>
                                             <form id="delete-form" action="{{ route('admin.rent.destroy', ['id' => $rent->id]) }}" method="POST" style="display: none;">
                                                 @csrf
                                                 @method('DELETE')

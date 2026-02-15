@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Profil')
+@section('title', 'Profile')
 
 @section('main')
 
@@ -9,8 +9,8 @@
     <!-- breadcrumb -->
     <div class="col-12">
       <ul class="breadcrumb">
-        <li class="breadcrumb__item"><a href="{{ route('home.index') }}">Accueil</a></li>
-        <li class="breadcrumb__item breadcrumb__item--active">Mon compte</li>
+        <li class="breadcrumb__item"><a href="{{ route('home.index') }}">Home</a></li>
+        <li class="breadcrumb__item breadcrumb__item--active">My account</li>
       </ul>
     </div>
     <!-- end breadcrumb -->
@@ -18,7 +18,7 @@
     <!-- title -->
     <div class="col-12">
       <div class="main__title main__title--page">
-        <h1>Mon compte</h1>
+        <h1>My account</h1>
       </div>
     </div>
     <!-- end title -->
@@ -35,19 +35,19 @@
               <form action="#" class="sign__form sign__form--profile">
                 <div class="row">
                   <div class="col-12">
-                    <h4 class="sign__title">Détails du profil</h4>
+                    <h4 class="sign__title">Profile details</h4>
                   </div>
 
                   <div class="col-12 col-md-6 col-lg-12 col-xl-6">
                     <div class="sign__group">
-                      <label class="sign__label" for="firstname">Nom</label>
+                      <label class="sign__label" for="firstname">First name</label>
                       <input id="firstname" type="text" value="{{ auth()->user()->first_name }}" name="first_name" class="sign__input" placeholder="John">
                     </div>
                   </div>
 
                   <div class="col-12 col-md-6 col-lg-12 col-xl-6">
                     <div class="sign__group">
-                      <label class="sign__label" for="lastname">Prénom</label>
+                      <label class="sign__label" for="lastname">Last name</label>
                       <input id="lastname" type="text" value="{{ auth()->user()->last_name }}" name="last_name" class="sign__input" placeholder="Doe">
                     </div>
                   </div>
@@ -61,13 +61,13 @@
 
                   <div class="col-12 col-md-6 col-lg-12 col-xl-6">
                     <div class="sign__group">
-                      <label class="sign__label" for="dateOfBirth">Date de naissance</label>
+                      <label class="sign__label" for="dateOfBirth">Date of birth</label>
                       <input id="dateOfBirth" type="date" value="{{ auth()->user()->date_of_birth }}" name="date_of_birth" class="sign__input" placeholder="10/10/2010">
                     </div>
                   </div>
 
                   <div class="col-12">
-                    <button class="sign__btn btn-muted" disabled="disabled" type="submit"><span>Sauvegarder</span></button>
+                    <button class="sign__btn btn-muted" disabled="disabled" type="submit"><span>Save</span></button>
                   </div>
                 </div>
               </form>
@@ -79,32 +79,32 @@
               <form action="#" class="sign__form sign__form--profile">
                 <div class="row">
                   <div class="col-12">
-                    <h4 class="sign__title">Changer de mot de passe</h4>
+                    <h4 class="sign__title">Change password</h4>
                   </div>
 
                   <div class="col-12 col-md-6 col-lg-12 col-xl-6">
                     <div class="sign__group">
-                      <label class="sign__label" for="oldpass">Ancien mot de passe</label>
+                      <label class="sign__label" for="oldpass">Old password</label>
                       <input id="oldpass" type="password" name="oldpass" class="sign__input">
                     </div>
                   </div>
 
                   <div class="col-12 col-md-6 col-lg-12 col-xl-6">
                     <div class="sign__group">
-                      <label class="sign__label" for="newpass">Nouveau mot de passe</label>
+                      <label class="sign__label" for="newpass">New password</label>
                       <input id="newpass" type="password" name="newpass" class="sign__input">
                     </div>
                   </div>
 
                   <div class="col-12 col-md-6 col-lg-12 col-xl-6">
                     <div class="sign__group">
-                      <label class="sign__label" for="confirmpass">Confirmer le nouveau mot...</label>
+                      <label class="sign__label" for="confirmpass">Confirm new password</label>
                       <input id="confirmpass" type="password" name="confirmpass" class="sign__input">
                     </div>
                   </div>
 
                   <div class="col-12">
-                    <button class="sign__btn btn-muted" disabled="disabled" type="submit"><span>Changer</span></button>
+                    <button class="sign__btn btn-muted" disabled="disabled" type="submit"><span>Change</span></button>
                   </div>
                 </div>
               </form>

@@ -10,8 +10,8 @@
 			<div class="page-404__wrap">
 				<div class="page-404__content">
 					<h1 class="page-404__title">404</h1>
-					<p class="page-404__text">La page que vous cherchez n'est pas disponible!</p>
-					<a href="{{ route('home.index') }}" class="page-404__btn"><span>Revenir en arrière</span></a>
+				<p class="page-404__text">The page you are looking for is not available!</p>
+				<a href="{{ route('home.index') }}" class="page-404__btn"><span>Go back</span></a>
 				</div>
 			</div>
 		</div>

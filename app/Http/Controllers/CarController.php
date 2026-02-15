@@ -18,7 +18,7 @@ class CarController extends Controller
     {
         $cars_latest = Car::latest();
 
-        // A modifier
+        // TODO: Needs modification
         if (Auth::guard('admin')->check()) {
             $cars = $cars_latest->paginate(20);
             return view('admin.cars', compact('cars'));
@@ -26,19 +26,19 @@ class CarController extends Controller
 
         $carsQuery = Car::query();
 
-        // Filtre par modèle
+        // Filter by model
         if ($request->has('model')) {
             $model = $request->input('model');
             $carsQuery->where('model', 'like', "%$model%");
         }
 
-        // Filtre par prix journalier max
+        // Filter by max daily rate
         if ($request->has('max_daily_rate')) {
             $maxDailyRate = $request->input('max_daily_rate');
             $carsQuery->where('daily_rate', '<=', $maxDailyRate);
         }
 
-        // Filtre par année de fabrication
+        // Filter by manufacturing year
         if ($request->has('make_year')) {
             $makeYear = $request->input('make_year');
             $carsQuery->where('make_year', $makeYear);
@@ -53,7 +53,7 @@ class CarController extends Controller
             } 
         }
 
-        // Filtre par marque
+        // Filter by brand
         if ($request->has('brand')) {
             $brand = $request->input('brand');
             if ($brand != 'tout') {
@@ -61,12 +61,12 @@ class CarController extends Controller
             }
         }
 
-        // Tri par date de création (plus récent d'abord)
+        // Sort by creation date (most recent first)
         if ($request->has('sort') && $request->input('sort') === 'recent') {
             $carsQuery->orderByDesc('created_at');
         }
 
-        // Limite le nombre de résultats
+        // Limit number of results //FIXME results
         $limit = $request->has('limit') ? $request->input('limit') : 9;
 
         $cars = $carsQuery->paginate($limit);
@@ -92,13 +92,13 @@ class CarController extends Controller
      */
     public function store(CarCreationRequest $request)
     {
-        // Récupérer les données validées
+        // Get validated data
         $validatedData = $request->validated();
 
-        // Récupérer le fichier d'image principale
+        // Get main image file
         $mainImage = $request->file('main_image');
 
-        // Enregistrer la voiture dans la base de données
+        // Save car to database
         $car = new Car();
         $car->model = $validatedData['model'];
         $car->brand = $validatedData['brand'];
@@ -112,7 +112,7 @@ class CarController extends Controller
         $car->image_url = $mainImage->store('car_images', 'public');
         $car->save();
 
-        // Enregistrer les images secondaires dans la base de données
+        // Save secondary images to database
         $secondaryImages = $request->file('secondary_images');
         if ($secondaryImages) {
             foreach ($secondaryImages as $secondaryImage) {
@@ -123,7 +123,7 @@ class CarController extends Controller
             }
         }
 
-        return redirect()->route('admin.car.index')->with('success', 'La voiture a été créée avec succès.');
+        return redirect()->route('admin.car.index')->with('success', 'The car has been created successfully.');
     }
 
     /**

@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('title', 'Inscription')
+@section('title', 'Register')
 
 @section('body')
 <!-- main content -->
@@ -18,14 +18,14 @@
                     <span class="text-danger text-center">{{ $errors->first('first_name') }}</span>
                 @endif
                 <div class="sign__group">
-                    <input type="text" name="first_name" class="sign__input" placeholder="Nom">
+                    <input type="text" name="first_name" class="sign__input" placeholder="First name">
                 </div>
     
                 @if ($errors->has('last_name'))
                     <span class="text-danger text-center">{{ $errors->first('last_name') }}</span>
                 @endif
                 <div class="sign__group">
-                    <input type="text" name="last_name" class="sign__input" placeholder="Prénom">
+                    <input type="text" name="last_name" class="sign__input" placeholder="Last name">
                 </div>
                 
                 @if ($errors->has('email'))
@@ -39,27 +39,27 @@
                     <span class="text-danger text-center">{{ $errors->first('phone') }}</span>
                 @endif
                 <div class="sign__group">
-                    <input type="tel" name="phone" class="sign__input" placeholder="Numéro de téléphone">
+                    <input type="tel" name="phone" class="sign__input" placeholder="Phone number">
                 </div>
 
                 @if ($errors->has('date_of_birth'))
                     <span class="text-danger text-center">{{ $errors->first('date_of_birth') }}</span>
                 @endif
                 <div class="sign__group">
-                    <input type="date" name="date_of_birth" class="sign__input" placeholder="Date de naissance">
+                    <input type="date" name="date_of_birth" class="sign__input" placeholder="Date of birth">
                 </div>
 
                 @if ($errors->has('password'))
                     <span class="text-danger text-center">{{ $errors->first('password') }}</span>
                 @endif
                 <div class="sign__group">
-                    <input type="password" name="password" class="sign__input" placeholder="Mot de passe">
+                    <input type="password" name="password" class="sign__input" placeholder="Password">
                 </div>
 
 
-                <button class="sign__btn" type="submit"><span>S'inscrire</span></button>
+                <button class="sign__btn" type="submit"><span>Sign up</span></button>
 
-                <span class="sign__text">Avez vous deja un compte ? <a href="{{ route('login.show') }}">Connectez vous!</a></span>
+                <span class="sign__text">Already have an account? <a href="{{ route('login.show') }}">Sign in!</a></span>
             </form>
         </div>
     </div>

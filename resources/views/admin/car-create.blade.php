@@ -8,12 +8,12 @@
         <h1 class="mt-4">Créer une voiture</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Accueil</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('admin.car.index') }}">Voitures</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.car.index') }}">Cars</a></li>
             <li class="breadcrumb-item active">Nouvelle</li>
         </ol>
         <!-- <div class="card mb-4">
             <div class="card-body">
-                Ici vous pouvez voir toute les voitures de notre parking.
+                Here you can see all the cars in our parking lot.
             </div>
         </div>-->
         <div class="mb-4">
@@ -87,7 +87,7 @@
                             <label for="rental_price" class="col-sm-3 my-2 col-form-label">Prix de location par jour :</label>
 
                             <div class="col-sm-9">
-                                <input type="number" suff class="form-control" id="rental_price" name="daily_rate" step="0.01" required> FCFA
+                                <input type="number" suff class="form-control" id="rental_price" name="daily_rate" step="0.01" required> Euros
                             </div>
                         </div>
                         <div class="form-group row">

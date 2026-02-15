@@ -16,7 +16,7 @@ return new class extends Migration
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->decimal('total_cost');
-            $table->enum('payement_status', ['payé', 'en attente', 'annulé']);
+            $table->enum('payement_status', ['paid', 'pending', 'cancelled']);
             $table->enum('payement_method', ['paypal', 'visa', 'mastercard']);
             $table->foreignId('car_id')->constrained();
             $table->foreignId('user_id')->constrained();

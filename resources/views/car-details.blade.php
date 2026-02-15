@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'A propos')
+@section('title', 'Car Details')
 
 @section('main')
 @php
@@ -12,8 +12,8 @@ $car_name = $car->brand.' '.$car->model
             <!-- breadcrumb -->
             <div class="col-12">
                 <ul class="breadcrumb">
-                    <li class="breadcrumb__item"><a href="{{ route('home.index') }}">Accueil</a></li>
-                    <li class="breadcrumb__item"><a href="{{ route('car.index') }}">Voitures</a></li>
+                    <li class="breadcrumb__item"><a href="{{ route('home.index') }}">Home</a></li>
+                    <li class="breadcrumb__item"><a href="{{ route('car.index') }}">Cars</a></li>
                     <li class="breadcrumb__item breadcrumb__item--active">{{ $car_name }} </li>
                 </ul>
             </div>
@@ -53,11 +53,11 @@ $car_name = $car->brand.' '.$car->model
                         <div class="splide__track">
                             <ul class="splide__list">
                                 <li class="splide__slide">
-                                    <img src="{{ Storage::url($car->image_url) }}" alt="">
+                                    <img src="{{ asset($car->image_url) }}" alt="">
                                 </li>
                                 @foreach ($car->secondaryImages as $image)
                                 <li class="splide__slide">
-                                    <img src="{{ Storage::url($image->url) }}" alt="">
+                                    <img src="{{ asset($image->url) }}" alt="">
                                 </li>
                                 @endforeach
                             </ul>
@@ -81,34 +81,34 @@ $car_name = $car->brand.' '.$car->model
             <!-- offer -->
             <div class="col-12 col-lg-5">
                 <div class="offer">
-                    <span class="offer__title">Offre</span>
+                    <span class="offer__title">Offer</span>
                     <div class="offer__wrap">
-                        <span class="offer__price">{{ intval($car->daily_rate) }} FCFA <sub>/ jour</sub></span>
+                        <span class="offer__price">{{ intval($car->daily_rate) }} Euros <sub>/ day</sub></span>
                         @if ($car->available)
-                        <a href="#" class="offer__rent open-modal" id="rent-btn"><span>Louer</span></a>
+                        <a href="#" class="offer__rent open-modal" id="rent-btn"><span>Rent</span></a>
                         @else
-                        <p style="margin-right: 10px">Indisponible</p>
+                        <p style="margin-right: 10px">Unavailable</p>
                         @endif
                     </div>
 
-                    <span class="offer__title">Termes du contrat</span>
+                    <span class="offer__title">Contract terms</span>
                     <form id='rent-form' class="offer__list" action="{{ route('rent.store', ['id' => $car->id]) }}" method="post">
                         @csrf
                         <ul class="offer__list">
                             <li>
-                                <span class="offer__list-name">Jour de début </span>
+                                <span class="offer__list-name">Start date</span>
                                 <div class="sign__group">
                                     <input type="date" id="start_date" name="start_date" class="sign__input" required min="{{ now()->format('Y-m-d') }}">
                                 </div>
                             </li>
                             <li>
-                                <span class="offer__list-name">Jour de fin </span>
+                                <span class="offer__list-name">End date</span>
                                 <div class="sign__group">
                                     <input type="date" id="end_date" name="end_date" class="sign__input" placeholder="Jour de retour" required>
                                 </div>
                             </li>
                             <li>
-                                <span class="offer__list-name">Méthode de payement </span>
+                                <span class="offer__list-name">Payment method</span>
                                 <div class="sign__group">
                                     <ul class="sign__radio">
                                         <li>
@@ -130,13 +130,13 @@ $car_name = $car->brand.' '.$car->model
                     </form>
 
 
-                    <span class="offer__title">Détails de la voitures</span>
+                    <span class="offer__title">Car details</span>
                     <ul class="offer__details">
                         <li>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M12.3,12.22A4.92,4.92,0,0,0,14,8.5a5,5,0,0,0-10,0,4.92,4.92,0,0,0,1.7,3.72A8,8,0,0,0,1,19.5a1,1,0,0,0,2,0,6,6,0,0,1,12,0,1,1,0,0,0,2,0A8,8,0,0,0,12.3,12.22ZM9,11.5a3,3,0,1,1,3-3A3,3,0,0,1,9,11.5Zm9.74.32A5,5,0,0,0,15,3.5a1,1,0,0,0,0,2,3,3,0,0,1,3,3,3,3,0,0,1-1.5,2.59,1,1,0,0,0-.5.84,1,1,0,0,0,.45.86l.39.26.13.07a7,7,0,0,1,4,6.38,1,1,0,0,0,2,0A9,9,0,0,0,18.74,11.82Z"></path>
                             </svg>
-                            <span>{{ $car->passenger_capacity }} personnes</span>
+                            <span>{{ $car->passenger_capacity }} people</span>
                         </li>
                         <li>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
