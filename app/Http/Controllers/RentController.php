@@ -102,12 +102,15 @@ class RentController extends Controller
      */
     public function destroy(string $id)
     {
-
+        $rent = Rent::findOrFail($id);
+        $car = $rent->car;
+        $car->available = true;
+        $car->save();
+        $rent->delete();
         if (Auth::guard('admin')->check()) {
-            $rent = Rent::findOrFail($id);
-            $rent->delete();
             return redirect()->route('admin.rent.index')->with('success', 'The rental has been deleted successfully.');
         } else {
+            $rent->delete();
             return redirect()->route('rent.index');
         }
     }
